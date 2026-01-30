@@ -1,0 +1,23 @@
+-- KPI 1: Receita total e ticket médio
+SELECT
+  ROUND(SUM(valor_total), 2) AS receita_total,
+  ROUND(AVG(valor_total), 2) AS ticket_medio
+FROM vendas;
+
+-- KPI 2: Receita por mês
+SELECT
+  DATE_FORMAT(data_venda, '%Y-%m-01') AS mes,
+  ROUND(SUM(valor_total), 2) AS receita
+FROM vendas
+GROUP BY mes
+ORDER BY mes;
+
+-- KPI 3: Top 10 estados por receita
+SELECT
+  c.estado,
+  ROUND(SUM(v.valor_total), 2) AS receita
+FROM vendas v
+JOIN clientes c ON c.cliente_id = v.cliente_id
+GROUP BY c.estado
+ORDER BY receita DESC
+LIMIT 10;

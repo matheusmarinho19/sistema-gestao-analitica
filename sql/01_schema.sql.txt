@@ -1,0 +1,57 @@
+-- 01_schema.sql
+CREATE DATABASE IF NOT EXISTS siga_pequenas_empresas;
+USE siga_pequenas_empresas;
+
+CREATE TABLE IF NOT EXISTS clientes (
+    cliente_id VARCHAR(50) PRIMARY KEY,
+    nome        VARCHAR(100),
+    cidade      VARCHAR(100),
+    estado      CHAR(2),
+    data_cadastro DATE
+);
+
+CREATE TABLE IF NOT EXISTS funcionarios (
+    funcionario_id INT PRIMARY KEY,
+    nome   VARCHAR(100),
+    equipe VARCHAR(50),
+    ativo  TINYINT
+);
+
+CREATE TABLE IF NOT EXISTS vendas (
+    venda_id   VARCHAR(50) PRIMARY KEY,
+    cliente_id VARCHAR(50),
+    data_venda DATETIME,
+    valor_total DECIMAL(10,2),
+    status_venda VARCHAR(30),
+    CONSTRAINT fk_vendas_cliente
+        FOREIGN KEY (cliente_id)
+        REFERENCES clientes(cliente_id)
+);
+
+CREATE TABLE IF NOT EXISTS interacoes (
+    interacao_id INT AUTO_INCREMENT PRIMARY KEY,
+    cliente_id VARCHAR(50),
+    funcionario_id INT,
+    data_interacao DATETIME,
+    canal VARCHAR(30),
+    status VARCHAR(30),
+    proximo_passo_data DATE,
+    observacao TEXT,
+    CONSTRAINT fk_interacoes_cliente
+        FOREIGN KEY (cliente_id)
+        REFERENCES clientes(cliente_id),
+    CONSTRAINT fk_interacoes_funcionario
+        FOREIGN KEY (funcionario_id)
+        REFERENCES funcionarios(funcionario_id)
+);
+
+CREATE TABLE IF NOT EXISTS etl_log (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,
+    pipeline VARCHAR(50),
+    status VARCHAR(20),
+    linhas_clientes INT,
+    linhas_funcionarios INT,
+    linhas_vendas INT,
+    mensagem TEXT,
+    dt_execucao DATETIME DEFAULT CURRENT_TIMESTAMP
+);
