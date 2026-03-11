@@ -7,9 +7,9 @@ from datetime import datetime
 # CONFIG (ajuste aqui)
 # =========================
 USUARIO = "root"
-SENHA = "Limites1007@"  
-HOST = "127.0.0.1"
-PORTA = 3306
+SENHA = "senha&&&&&"  
+HOST = "127.0.0.16"
+PORTA = 33
 BANCO = "siga_pequenas_empresas"
 ARQUIVO_EXCEL = "C:/Users/Eliane/Downloads/Arquivos Facul/sistema-gestao-analitica/data/operational/operacao.xlsx"
 
