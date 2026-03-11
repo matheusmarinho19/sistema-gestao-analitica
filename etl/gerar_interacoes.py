@@ -9,7 +9,7 @@ from datetime import timedelta
 # =========================
 USUARIO = "root"
 SENHA = "senha&&&&"   
-HOST = "127.0.0.1"
+HOST = "127.0.0.16"
 PORTA = 33
 BANCO = "siga_pequenas_empresas"
 
