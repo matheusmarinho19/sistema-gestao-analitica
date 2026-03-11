@@ -8,9 +8,9 @@ from datetime import timedelta
 # CONFIG (ajuste se precisar)
 # =========================
 USUARIO = "root"
-SENHA = "Limites1007@"   
+SENHA = "senha&&&&"   
 HOST = "127.0.0.1"
-PORTA = 3306
+PORTA = 33
 BANCO = "siga_pequenas_empresas"
 
 senha_escapada = quote_plus(SENHA)
